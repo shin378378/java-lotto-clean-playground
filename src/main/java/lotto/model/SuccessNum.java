@@ -80,18 +80,23 @@ public class SuccessNum {
             Integer matchCount = entry.getKey();
             Integer price = MATCH_PRICE[matchCount];
             Integer count = entry.getValue();
-            String result;
-            switch(matchCount){
-                case 3,4,5,6:
-                    result = matchCount + "개 일치 (" + price + "원) - " + count + "개";
-                    resultStatistics.add(result);
-                    break;
-                case BONUSBALL_KEY:
-                    result = "5개 일치, 보너스 볼 일치(" + price + "원) - " + count + "개";
-                    resultStatistics.add(result);
-                    break;
+            String result=null;
+            if(matchCount==3 || matchCount==4 || matchCount==5){
+                result = matchCount + "개 일치 (" + price + "원) - " + count + "개";
+                resultStatistics.add(result);
+            }
+            else if(matchCount==BONUSBALL_KEY){
+                result = "5개 일치, 보너스 볼 일치(" + price + "원) - " + count + "개";
+                resultStatistics.add(result);
+            }
+            else if(matchCount==6){
+                result = matchCount + "개 일치 (" + price + "원) - " + count + "개";
+                resultStatistics.add(result);
             }
         }
+        String tmp= resultStatistics.get(3);
+        resultStatistics.remove(3);
+        resultStatistics.add(tmp);
     }
 
     //결과 설정
