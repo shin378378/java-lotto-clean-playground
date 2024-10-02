@@ -19,6 +19,11 @@ public class LottoTicket {
         changeNumListToStr();
     }
 
+    public LottoTicket(List<Integer> ticket, String ticketStr) {
+        this.ticket = ticket;
+        this.ticketStr = ticketStr;
+    }
+
     public List<Integer> getLottoTicket() {
         return ticket;
     }
