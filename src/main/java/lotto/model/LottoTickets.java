@@ -18,7 +18,7 @@ public class LottoTickets {
     }
 
     //티켓리스트 생성하기
-    public void createTicketsList(LottoTicket ticket){
+    public void createTicketsList(LottoTicket ticket) {
         tickets.add(ticket);
         ticketsList = tickets.stream()
                 .map(LottoTicket::getTicketStr)
@@ -26,15 +26,15 @@ public class LottoTickets {
     }
 
     //티켓들을 스트링으로 변경하기
-    public void changeTicketsListToStr(){
+    public void changeTicketsListToStr() {
         ticketsStr = tickets.stream()
                 .map(LottoTicket::getTicketStr)
                 .collect(Collectors.joining("\n"));
     }
 
     //티켓들 생성하기
-    public void createTickets(int NumOfTickets,List <String> passivityNums) {
-        for(int i=0;i<passivityNums.size();i++){
+    public void createTickets(int NumOfTickets, List<String> passivityNums) {
+        for (int i = 0; i < passivityNums.size(); i++) {
             LottoTicket ticket = new LottoTicket(passivityNums.get(i));
             createTicketsList(ticket);
         }

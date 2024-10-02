@@ -1,14 +1,11 @@
 package lotto.model;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class WinningTicket {
     private int bonusBall;
     private List<Integer> successList = new ArrayList<>();
-
 
     public List<Integer> getSuccessList() {
         return successList;
@@ -18,7 +15,7 @@ public class WinningTicket {
         return bonusBall;
     }
 
-    //당첨 번호 배열로 변환
+    //당첨번호 배열로 변환
     public void changeNumStrToArr(String successNumStr){
         String[] successNumArr = successNumStr.split(", ");
         for(String num : successNumArr){

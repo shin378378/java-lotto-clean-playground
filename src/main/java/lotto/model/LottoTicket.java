@@ -13,8 +13,8 @@ public class LottoTicket {
         changeNumListToStr();
     }
 
-    public LottoTicket(String passivityNum){
-        List<Integer> passivityList=lottoNumList.createPassivityList(passivityNum);
+    public LottoTicket(String passivityNum) {
+        List<Integer> passivityList = lottoNumList.createPassivityList(passivityNum);
         this.ticket = passivityList;
         changeNumListToStr();
     }
@@ -28,9 +28,9 @@ public class LottoTicket {
     }
 
     //번호 리스트를 스트링으로 바꾸기
-    public void changeNumListToStr(){
+    public void changeNumListToStr() {
         this.ticketStr = ticket.stream()
                 .map(String::valueOf)
-                .collect(Collectors.joining(", ","[","]"));
+                .collect(Collectors.joining(", ", "[", "]"));
     }
 }

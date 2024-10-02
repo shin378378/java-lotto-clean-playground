@@ -26,8 +26,8 @@ public class LottoController {
     }
 
     //티켓 생성
-    public void purchasePassivityTickets() {
-        this.numOfPassivityTickets = inputView.requestPassivityPurchase();
+    public void createPassivityTickets() {
+        this.numOfPassivityTickets = inputView.requestNumOfPassivityTickets();
         List<String> passivityNums = inputView.requestPassivityNum(numOfPassivityTickets);
         lottoTickets.createTickets(numOfTickets, passivityNums);
     }
@@ -70,7 +70,7 @@ public class LottoController {
     }
 
     //당첨 통계 출력
-    public void printsettingStatistics() {
+    public void printSettingStatistics() {
         outputView.printStatistics();
         List <String> resultStatisticsList = resultStatistics.getResultStatisticsList();
         outputView.printMatchCount(resultStatisticsList);
@@ -82,12 +82,12 @@ public class LottoController {
     public static void main(String[] args) {
         LottoController lottoController = new LottoController();
         lottoController.settingPurchasePrice();
-        lottoController.purchasePassivityTickets();
+        lottoController.createPassivityTickets();
         lottoController.outputTickets();
         lottoController.settingSuccessNum();
         lottoController.settingBunusBall();
         lottoController.statisticsPreprocessing();
         lottoController.processStatistics();
-        lottoController.printsettingStatistics();
+        lottoController.printSettingStatistics();
     }
 }

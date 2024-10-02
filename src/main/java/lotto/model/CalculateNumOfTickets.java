@@ -3,7 +3,7 @@ package lotto.model;
 public class CalculateNumOfTickets {
     private int numOfTickets;
     private int purchasePrice;
-    private final int TICKET_PRICE=1000;
+    private final int TICKET_PRICE = 1000;
 
     public int getNumOfTickets() {
         return numOfTickets;
