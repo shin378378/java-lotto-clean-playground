@@ -1,9 +1,6 @@
 package lotto.controller;
 
-import lotto.model.CalculateNumOfTickets;
-import lotto.model.WinningTicket;
-import lotto.model.LottoTicket;
-import lotto.model.LottoTickets;
+import lotto.model.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -13,8 +10,9 @@ public class LottoController {
     static InputView inputView = new InputView();
     static OutputView outputView = new OutputView();
     static CalculateNumOfTickets calculateNumOfTickets = new CalculateNumOfTickets();
-    static LottoTickets tickets = new LottoTickets();
-    static WinningTicket successNum = new WinningTicket();
+    static LottoTickets lottoTickets = new LottoTickets();
+    static WinningTicket winningTicket = new WinningTicket();
+    static ResultStatistics resultStatistics = new ResultStatistics();
 
     private int numOfTickets;
     private int numOfPassivityTickets;
@@ -31,12 +29,12 @@ public class LottoController {
     public void purchasePassivityTickets() {
         this.numOfPassivityTickets = inputView.requestPassivityPurchase();
         List<String> passivityNums = inputView.requestPassivityNum(numOfPassivityTickets);
-        tickets.createTickets(numOfTickets, passivityNums);
+        lottoTickets.createTickets(numOfTickets, passivityNums);
     }
 
     //티켓들 출력
     public void outputTickets() {
-        String lottoTicketsStr = tickets.getTicketsStr();
+        String lottoTicketsStr = lottoTickets.getTicketsStr();
         this.numOfRandomTickets = numOfTickets - numOfPassivityTickets;
         outputView.printTickets(lottoTicketsStr, numOfPassivityTickets, numOfRandomTickets);
     }
@@ -44,34 +42,39 @@ public class LottoController {
     //당첨번호 생성
     public void settingSuccessNum() {
         String successNumStr = inputView.requestSuccessNum();
-        successNum.changeNumStrToArr(successNumStr);
+        winningTicket.changeNumStrToArr(successNumStr);
     }
 
     //보너스볼 생성
     public void settingBunusBall() {
         int bonusBall = inputView.requestBonusBall();
-        successNum.decisionBonusBall(bonusBall);
+        winningTicket.decisionBonusBall(bonusBall);
+    }
+
+    //통계 전처리 작업
+    public void statisticsPreprocessing(){
+        resultStatistics.decisionPrice();
+        resultStatistics.statisticsInit();
     }
 
     //당첨 통계
     public void processStatistics() {
-        outputView.printStatistics();
-        List<LottoTicket> lottoTickets = tickets.getTickets();
-
-        successNum.statisticsInit();
-        successNum.settingStatistics(lottoTickets);
-        successNum.resultStatisticsController();
-
+        List<LottoTicket> tickets = lottoTickets.getTickets();
+        List<Integer> successList = winningTicket.getSuccessList();
+        int bonusBall = winningTicket.getBonusBall();
+        resultStatistics.settingStatistics(tickets, successList ,bonusBall);
         int purchasePrice = calculateNumOfTickets.getPurchasePrice();
-        successNum.calculateProfit(purchasePrice);
-        successNum.settingResultProfit();
+        resultStatistics.calculateProfit(purchasePrice);
+        resultStatistics.settingResultProfit();
+        resultStatistics.settingResultStatistics();
     }
 
     //당첨 통계 출력
     public void printsettingStatistics() {
-        List<String> resultStatistics = successNum.getResultStatistics();
-        outputView.printMatchCount(resultStatistics);
-        String resultProfit = successNum.settingResultProfit();
+        outputView.printStatistics();
+        List <String> resultStatisticsList = resultStatistics.getResultStatisticsList();
+        outputView.printMatchCount(resultStatisticsList);
+        String resultProfit = resultStatistics.settingResultProfit();
         outputView.printProfit(resultProfit);
     }
 
@@ -83,7 +86,8 @@ public class LottoController {
         lottoController.outputTickets();
         lottoController.settingSuccessNum();
         lottoController.settingBunusBall();
-        //lottoController.processStatistics();
-        //lottoController.printsettingStatistics();
+        lottoController.statisticsPreprocessing();
+        lottoController.processStatistics();
+        lottoController.printsettingStatistics();
     }
 }
