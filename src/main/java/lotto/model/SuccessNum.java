@@ -66,8 +66,8 @@ public class SuccessNum {
     }
 
     //당첨 통계
-    public void settingStatistics(List<Ticket> lottoTickets){
-        for (Ticket ticket : lottoTickets) {
+    public void settingStatistics(List<LottoTicket> lottoTickets){
+        for (LottoTicket ticket : lottoTickets) {
             List<Integer> lottoTicket=ticket.getLottoTicket();
             int matchCount= ticketMatchRate(lottoTicket);
             statistics.put(matchCount , statistics.getOrDefault(matchCount, 0) + 1);

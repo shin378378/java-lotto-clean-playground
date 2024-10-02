@@ -1,21 +1,21 @@
 package lotto.model;
 
-public class CalculateNumOfTicket {
-    private int numOfTicket;
-    private int ticketPrice=1000;
+public class CalculateNumOfTickets {
+    private int numOfTickets;
     private int purchasePrice;
+    private final int TICKET_PRICE=1000;
 
     public int getNumOfTickets() {
-        return numOfTicket;
+        return numOfTickets;
     }
 
     public int getPurchasePrice() {
         return purchasePrice;
     }
 
-    //티켓 개수 저장하기
+    //티켓 개수 정하기
     public void settingNumOfTickets(int purchasePrice) {
         this.purchasePrice=purchasePrice;
-        this.numOfTicket = purchasePrice/ticketPrice;
+        this.numOfTickets = purchasePrice/TICKET_PRICE;
     }
 }

@@ -16,10 +16,10 @@ public class LottoNumListTest {
         LottoNumList lottoNumList = new LottoNumList();
 
         //When
-        List<Integer> choose6Num = lottoNumList.createLottoNumList();
+        List<Integer> randomList = lottoNumList.createRandomList();
 
         //Then
-        Assertions.assertThat(choose6Num.size()).isEqualTo(6);
+        Assertions.assertThat(randomList.size()).isEqualTo(6);
     }
 
     @Test
@@ -28,14 +28,14 @@ public class LottoNumListTest {
         LottoNumList lottoNumList = new LottoNumList();
         String passivityNum = "3, 5, 8, 6, 7, 2";
         List<Integer> tmp = Arrays.asList(2, 3, 5, 6, 7, 8);
-
         SoftAssertions softly = new SoftAssertions();
 
         //When
-        List<Integer> chooseList = lottoNumList.createPassivityLottoNumList(passivityNum);
+        List<Integer> passivityList = lottoNumList.createPassivityList(passivityNum);
 
         //Then
-        softly.assertThat(chooseList.size()).isEqualTo(6);
-        softly.assertThat(chooseList).isEqualTo(tmp);
+        softly.assertThat(passivityList.size()).isEqualTo(6);
+        softly.assertThat(passivityList).isEqualTo(tmp);
+        softly.assertAll();
     }
 }
