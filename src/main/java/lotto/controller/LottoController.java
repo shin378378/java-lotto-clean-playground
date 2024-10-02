@@ -7,6 +7,7 @@ import lotto.model.Tickets;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LottoController {
@@ -21,8 +22,20 @@ public class LottoController {
     public void purchaseTickets(){
         int purchasePrice=inputView.requestPurchasePrice();
         calculateNumOfTickets.settingNumOfTickets(purchasePrice);
+
         numOfTickets= calculateNumOfTickets.getNumOfTickets();
         outputView.printNumOfTickets(numOfTickets);
+    }
+
+    //티켓 구매
+    public void purchasePassivityPurchase(){
+        int purchasePrice=inputView.requestPurchasePrice();
+        calculateNumOfTickets.settingNumOfTickets(purchasePrice);
+        int passivityPurchaseNum =inputView.requestPassivityPurchase();
+        List <String> passivityNums = inputView.requestPassivityNum(passivityPurchaseNum);
+//        for (String passivityNum : passivityNums) {
+//            System.out.println(passivityNum);
+//        }
     }
 
     //티켓들 생성
@@ -46,10 +59,21 @@ public class LottoController {
 
     //당첨 통계
     public void processStatistics(){
+        /*
+        successNum.settingStatistics(lottoTickets) 후에  successNum.resultStatisticsController()를 호출하고 있는데,
+            통계를 다 계산해놓은 뒤에 다시 재초기화를 하는 과정이 문제! (구체적인 메서드는 successNum.statisticsInit();)
+         */
+
         outputView.printStatistics();
         List<Ticket> lottoTickets = tickets.getLottoTickets();
+
+        successNum.statisticsInit();
+
+        // 정상동작
         successNum.settingStatistics(lottoTickets);
+
         successNum.resultStatisticsController();
+
         int purchasePrice= calculateNumOfTickets.getPurchasePrice();
         successNum.calculateProfit(purchasePrice);
         successNum.settingResultProfit();
@@ -66,11 +90,12 @@ public class LottoController {
 
     public static void main(String[] args) {
         LottoController lottoController = new LottoController();
-        lottoController.purchaseTickets();
-        lottoController.settingTickets();
-        lottoController.settingSuccessNum();
-        lottoController.settingBunusBall();
-        lottoController.processStatistics();
-        lottoController.printsettingStatistics();
+        lottoController.purchasePassivityPurchase();
+//        lottoController.purchaseTickets();
+//        lottoController.settingTickets();
+//        lottoController.settingSuccessNum();
+//        lottoController.settingBunusBall();
+//        lottoController.processStatistics();
+//        lottoController.printsettingStatistics();
     }
 }

@@ -35,7 +35,7 @@ public class SuccessNum {
     }
 
     //통계 초기화
-    void statisticsInit(){
+    public void statisticsInit(){
         statistics.put(3,0);
         statistics.put(4,0);
         statistics.put(5,0);
@@ -58,16 +58,11 @@ public class SuccessNum {
             if(successList.contains(num)){
                 matchCount++;
             }
-            if (successList.contains(bonusBall)) {
-                ticketMatchBonusBall();
-            }
+        }
+        if (lottoTicket.contains(bonusBall) && matchCount==5) {
+            return BONUSBALL_KEY;
         }
         return matchCount;
-    }
-
-    //보너스볼 일치시 보너스볼 value값 높여주기
-    public void ticketMatchBonusBall(){
-        statistics.put(BONUSBALL_KEY, statistics.get(BONUSBALL_KEY)+1);
     }
 
     //당첨 통계
@@ -102,7 +97,6 @@ public class SuccessNum {
     //결과 설정
     public void resultStatisticsController(){
         DecisionPrice();
-        statisticsInit();
         settingResultStatistics();
     }
 
