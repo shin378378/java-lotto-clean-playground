@@ -6,7 +6,8 @@ import java.util.List;
 
 public class LottoNumList {
     private List<Integer> lottoNumInit = new ArrayList<>();
-    private List<Integer> choose6Num = new ArrayList<>();
+    private List<Integer> choose6Num;
+    private List<Integer> chooseList;
 
     //1-45번호 세팅
     public void setting1to45() {
@@ -16,21 +17,33 @@ public class LottoNumList {
     }
 
     //번호 랜덤으로 6개 고르기
-    public void getChoose6Num(){
+    public void getChoose6Num() {
         Collections.shuffle(lottoNumInit);
-        choose6Num = lottoNumInit.subList(0,6);
+        choose6Num = lottoNumInit.subList(0, 6);
     }
 
     //번호 오름차순으로 정렬하기
-    public void sortNum(){
-        Collections.sort(choose6Num);
+    public void sortNum(List<Integer> numList) {
+        Collections.sort(numList);
     }
 
     //로또 번호 생성
-    public List<Integer> createLottoNumList(){
+    public List<Integer> createLottoNumList() {
+        choose6Num = new ArrayList<>();
         setting1to45();
         getChoose6Num();
-        sortNum();
+        sortNum(choose6Num);
         return choose6Num;
+    }
+
+    //수동 로또 번호 생성
+    public List<Integer> createPassivityLottoNumList(String passivityNum) {
+        chooseList = new ArrayList<>();
+        String[] chooseNumArr = passivityNum.split(", ");
+        for (String num : chooseNumArr) {
+            chooseList.add(Integer.parseInt(num));
+        }
+        sortNum(chooseList);
+        return chooseList;
     }
 }

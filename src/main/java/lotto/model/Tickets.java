@@ -22,15 +22,23 @@ public class Tickets {
     }
 
     //티켓들 생성
-    public void createTickets(int NumOfTickets) {
-        for (int i = 0; i < NumOfTickets; i++) {
-            Ticket ticket = new Ticket();
-            lottoTickets.add(ticket);
-            lottoTicketsList = lottoTickets.stream()
-                    .map(Ticket::getLottoTicketStr)
-                    .collect(Collectors.toList());
-            changeTicketsListToStr();
+    public void createTickets(int NumOfTickets,List <String> passivityNums) {
+        for(int i=0;i<passivityNums.size();i++){
+            Ticket ticket = new Ticket(passivityNums.get(i));
+            createlottoTicketsList(ticket);
         }
+        for (int i = passivityNums.size(); i < NumOfTickets; i++) {
+            Ticket ticket = new Ticket();
+            createlottoTicketsList(ticket);
+        }
+        changeTicketsListToStr();
+    }
+
+    public void createlottoTicketsList(Ticket ticket){
+        lottoTickets.add(ticket);
+        lottoTicketsList = lottoTickets.stream()
+                .map(Ticket::getLottoTicketStr)
+                .collect(Collectors.toList());
     }
 
     //티켓들 스트링으로 변경

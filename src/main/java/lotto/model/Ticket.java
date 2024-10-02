@@ -13,6 +13,12 @@ public class Ticket {
         changeNumListToStr();
     }
 
+    public Ticket(String passivityNum){
+        List<Integer> chooseList=lottoNumList.createPassivityLottoNumList(passivityNum);
+        this.lottoTicket = chooseList;
+        changeNumListToStr();
+    }
+
     public List<Integer> getLottoTicket() {
         return lottoTicket;
     }
