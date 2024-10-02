@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class SuccessNum {
+public class WinningTicket {
     private List<Integer> successList = new ArrayList<>();
     private Map<Integer, Integer> statistics = new HashMap<>();
     private List<String> resultStatistics = new ArrayList<>();
@@ -14,13 +14,24 @@ public class SuccessNum {
     private int bonusBall;
     private double profitRate;
 
+    //당첨 번호 배열로 변환
+    public void changeNumStrToArr(String successNumStr){
+        String[] successNumArr = successNumStr.split(", ");
+        for(String num : successNumArr){
+            successList.add(Integer.parseInt(num));
+        }
+    }
+
+    //보너스볼 숫자 정하기
+    public void decisionBonusBall(Integer bonusBall){
+        this.bonusBall=bonusBall;
+    }
+
     public Map<Integer, Integer> getStatistics() {
         return statistics;
     }
 
-    public void decisionBonusBall(Integer bonusBall){
-        this.bonusBall=bonusBall;
-    }
+
 
     public List<String> getResultStatistics() {
         return resultStatistics;
@@ -43,13 +54,7 @@ public class SuccessNum {
         statistics.put(BONUSBALL_KEY,0);
     }
 
-    //당첨 번호 배열로 변환
-    public void changeSuccessNumStrtoArr(String successNumStr){
-        String[] successNumArr = successNumStr.split(", ");
-        for(String num : successNumArr){
-            successList.add(Integer.parseInt(num));
-        }
-    }
+
 
     //티켓 일치율 계산
     public Integer ticketMatchRate(List<Integer> lottoTicket){

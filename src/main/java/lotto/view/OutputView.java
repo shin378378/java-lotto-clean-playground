@@ -3,15 +3,9 @@ package lotto.view;
 import java.util.List;
 
 public class OutputView {
-
     //티켓 개수 출력
-    public void printNumOfTickets(int numOfTickets){
-        System.out.println();
-        System.out.println(numOfTickets+"개를 구매했습니다.");
-    }
-
-    //티켓 출력
-    public void printTickets(String lottoTicketsStr){
+    public void printTickets(String lottoTicketsStr,int NumOfPassivityTickets, int NumOfRandomTickets){
+        System.out.println("수동으로 "+NumOfPassivityTickets+"장, 자동으로 "+NumOfRandomTickets+"개를 구매했습니다.");
         System.out.println(lottoTicketsStr);
     }
 

@@ -1,7 +1,6 @@
 package model;
 
-import lotto.model.SuccessNum;
-import org.assertj.core.api.Assertions;
+import lotto.model.WinningTicket;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +14,7 @@ public class SuccessNumTest {
     @Test
     void 티켓일치숫자_개수_세기(){
         //Given
-        SuccessNum successNum = new SuccessNum();
+        WinningTicket successNum = new WinningTicket();
         List<Integer> lottoTicket1 = Arrays.asList(1, 3, 5, 6, 7, 8);
         List<Integer> lottoTicket2 = Arrays.asList(1, 4, 3, 2, 5, 7);
         final int BONUSBALL_KEY=7;
