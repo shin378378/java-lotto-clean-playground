@@ -27,7 +27,7 @@ public class LottoNumList {
         Collections.sort(numList);
     }
 
-    //로또 번호 생성
+    //랜덤 로또 번호 생성
     public List<Integer> createLottoNumList() {
         choose6Num = new ArrayList<>();
         setting1to45();
