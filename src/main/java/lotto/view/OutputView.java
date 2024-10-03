@@ -16,7 +16,7 @@ public class OutputView {
         System.out.println("---------");
     }
 
-    //일치개수 출력
+    //일치개수를 알려주는 문장 출력
     public void printMatchCount(List<String> resultStatistics){
         for (String resultStatistic : resultStatistics) {
             System.out.println(resultStatistic);

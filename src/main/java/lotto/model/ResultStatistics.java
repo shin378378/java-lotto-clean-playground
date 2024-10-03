@@ -6,12 +6,19 @@ import java.util.List;
 import java.util.Map;
 
 public class ResultStatistics {
-    private static final int BONUSBALL_KEY = 7;
+    private static int BONUSBALL_KEY = 7;
 
     private Map<Integer, Integer> statistics = new HashMap<>();
     private List<String> resultStatisticsList = new ArrayList<>();
     private int[] MATCH_PRICE = new int[8];
     private double profitRate;
+
+    public ResultStatistics() {
+    }
+
+    public ResultStatistics(int BONUSBALL_KEY) {
+        this.BONUSBALL_KEY=BONUSBALL_KEY;
+    }
 
     public List<String> getResultStatisticsList() {
         return resultStatisticsList;

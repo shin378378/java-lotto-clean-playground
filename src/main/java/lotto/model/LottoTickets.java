@@ -9,8 +9,21 @@ public class LottoTickets {
     private List<String> ticketsList = new ArrayList<>();
     private String ticketsStr = new String();
 
+    public LottoTickets() {
+    }
+
+    public LottoTickets(List<LottoTicket> tickets, List<String> ticketsList, String ticketsStr) {
+        this.tickets = tickets;
+        this.ticketsList = ticketsList;
+        this.ticketsStr = ticketsStr;
+    }
+
     public List<LottoTicket> getTickets() {
         return tickets;
+    }
+
+    public List<String> getTicketsList() {
+        return ticketsList;
     }
 
     public String getTicketsStr() {
@@ -18,8 +31,8 @@ public class LottoTickets {
     }
 
     //티켓리스트 생성하기
-    public void createTicketsList(LottoTicket ticket) {
-        tickets.add(ticket);
+    public void createTicketsList(LottoTicket lottoTicket) {
+        tickets.add(lottoTicket);
         ticketsList = tickets.stream()
                 .map(LottoTicket::getTicketStr)
                 .collect(Collectors.toList());
@@ -35,12 +48,12 @@ public class LottoTickets {
     //티켓들 생성하기
     public void createTickets(int NumOfTickets, List<String> passivityNums) {
         for (int i = 0; i < passivityNums.size(); i++) {
-            LottoTicket ticket = new LottoTicket(passivityNums.get(i));
-            createTicketsList(ticket);
+            LottoTicket lottoTicket = new LottoTicket(passivityNums.get(i));
+            createTicketsList(lottoTicket);
         }
         for (int i = passivityNums.size(); i < NumOfTickets; i++) {
-            LottoTicket ticket = new LottoTicket();
-            createTicketsList(ticket);
+            LottoTicket lottoTicket = new LottoTicket();
+            createTicketsList(lottoTicket);
         }
         changeTicketsListToStr();
     }
