@@ -5,6 +5,14 @@ public class CalculateNumOfTickets {
     private int purchasePrice;
     private final int TICKET_PRICE = 1000;
 
+    public CalculateNumOfTickets() {
+    }
+
+    public CalculateNumOfTickets(int numOfTickets, int purchasePrice) {
+        this.numOfTickets = numOfTickets;
+        this.purchasePrice = purchasePrice;
+    }
+
     public int getNumOfTickets() {
         return numOfTickets;
     }
