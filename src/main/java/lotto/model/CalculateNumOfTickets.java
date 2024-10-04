@@ -23,6 +23,9 @@ public class CalculateNumOfTickets {
 
     //티켓 개수 정하기
     public void settingNumOfTickets(int purchasePrice) {
+        if (purchasePrice < 0) {
+            throw new IllegalArgumentException("구매 금액은 음수일 수 없습니다.");
+        }
         this.purchasePrice=purchasePrice;
         this.numOfTickets = purchasePrice/TICKET_PRICE;
     }
