@@ -24,18 +24,18 @@ public class LottoTicket {
         this.ticketStr = ticketStr;
     }
 
+    //번호 리스트를 스트링으로 바꾸기
+    public void changeNumListToStr() {
+        this.ticketStr = ticket.stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining(", ", "[", "]"));
+    }
+
     public List<Integer> getLottoTicket() {
         return ticket;
     }
 
     public String getTicketStr() {
         return ticketStr;
-    }
-
-    //번호 리스트를 스트링으로 바꾸기
-    public void changeNumListToStr() {
-        this.ticketStr = ticket.stream()
-                .map(String::valueOf)
-                .collect(Collectors.joining(", ", "[", "]"));
     }
 }

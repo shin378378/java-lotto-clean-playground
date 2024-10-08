@@ -22,6 +22,13 @@ public class LottoNumList {
         randomList = numInit.subList(0, 6);
     }
 
+    //예외 - 수동로또의 크기가 6이 아닌 경우
+    public void passivityListSizeException(){
+        if (passivityList.size() != 6) {
+            throw new IllegalArgumentException("리스트의 크기가 6이어야 합니다. 현재 크기: " + passivityList.size());
+        }
+    }
+
     //오름차순으로 정렬하기
     public void sortNum(List<Integer> numList) {
         Collections.sort(numList);
@@ -34,13 +41,6 @@ public class LottoNumList {
         chooseRandomNum();
         sortNum(randomList);
         return randomList;
-    }
-
-    //예외 - 수동로또의 크기가 6이 아닌 경우
-    public void passivityListSizeException(){
-        if (passivityList.size() != 6) {
-            throw new IllegalArgumentException("리스트의 크기가 6이어야 합니다. 현재 크기: " + passivityList.size());
-        }
     }
 
     //수동로또 생성하기
