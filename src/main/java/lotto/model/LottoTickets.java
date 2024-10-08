@@ -18,14 +18,6 @@ public class LottoTickets {
         this.ticketsStr = ticketsStr;
     }
 
-    public List<LottoTicket> getTickets() {
-        return tickets;
-    }
-
-    public List<String> getTicketsList() {
-        return ticketsList;
-    }
-
     public String getTicketsStr() {
         return ticketsStr;
     }
@@ -56,5 +48,13 @@ public class LottoTickets {
             createTicketsList(lottoTicket);
         }
         changeTicketsListToStr();
+    }
+
+    public List<LottoTicket> getTickets() {
+        return tickets;
+    }
+
+    public List<String> getTicketsList() {
+        return ticketsList;
     }
 }
