@@ -77,14 +77,6 @@ public class ResultStatistics {
         profitRate = (double) profit / purchasePrice;
     }
 
-    //수익률 결과 스트링으로 만들기
-    public String settingResultProfit() {
-        String resultProfit = "총 수익률은 " + profitRate + "입니다.";
-        if (profitRate > 1) resultProfit = resultProfit.concat("(기준이 1이기 때문에 결과적으로 이익이라는 의미임)");
-        else if (profitRate < 1) resultProfit = resultProfit.concat("(기준이 1이기 때문에 결과적으로 손해라는 의미임)");
-        return resultProfit;
-    }
-
     //당첨 통계 결과 스트링으로 만들기
     public void settingResultStr(int matchCount, int price, int count) {
         String result=null;
@@ -98,6 +90,14 @@ public class ResultStatistics {
             result = matchCount + "개 일치 (" + price + "원) - " + count + "개";
             resultStatisticsList.add(result);
         }
+    }
+
+    //수익률 결과 스트링으로 만들기
+    public String settingResultProfit() {
+        String resultProfit = "총 수익률은 " + profitRate + "입니다.";
+        if (profitRate > 1) resultProfit = resultProfit.concat("(기준이 1이기 때문에 결과적으로 이익이라는 의미임)");
+        else if (profitRate < 1) resultProfit = resultProfit.concat("(기준이 1이기 때문에 결과적으로 손해라는 의미임)");
+        return resultProfit;
     }
 
     //당첨 통계 결과 리스트만들기

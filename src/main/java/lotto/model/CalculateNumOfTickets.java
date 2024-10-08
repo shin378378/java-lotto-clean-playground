@@ -1,16 +1,17 @@
 package lotto.model;
 
 public class CalculateNumOfTickets {
+    private static final int TICKET_PRICE = 1000;
     private int numOfTickets;
     private int purchasePrice;
-    private final int TICKET_PRICE = 1000;
-
-    public CalculateNumOfTickets() {
-    }
 
     public CalculateNumOfTickets(int numOfTickets, int purchasePrice) {
         this.numOfTickets = numOfTickets;
         this.purchasePrice = purchasePrice;
+    }
+
+    public static CalculateNumOfTickets createCalculateNumOfTickets() {
+        return new CalculateNumOfTickets(0,0);
     }
 
     //티켓 개수 정하기

@@ -13,14 +13,6 @@ public class WinningTicket {
         this.successList = successList;
     }
 
-    public List<Integer> getSuccessList() {
-        return successList;
-    }
-
-    public int getBonusBall() {
-        return bonusBall;
-    }
-
     //보너스볼 숫자 정하기
     public void decisionBonusBall(Integer bonusBall){
         this.bonusBall=bonusBall;
@@ -32,5 +24,13 @@ public class WinningTicket {
         for(String num : successNumArr){
             successList.add(Integer.parseInt(num.trim()));
         }
+    }
+
+    public List<Integer> getSuccessList() {
+        return successList;
+    }
+
+    public int getBonusBall() {
+        return bonusBall;
     }
 }
