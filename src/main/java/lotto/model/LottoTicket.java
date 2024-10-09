@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 public class LottoTicket {
     private List<Integer> ticket;
     private String ticketStr;
-    private LottoNumList lottoNumList = new LottoNumList();
+    private LottoNums lottoNumList = new LottoNums();
 
     public LottoTicket() {
         this.ticket = lottoNumList.createRandomList();
@@ -14,8 +14,8 @@ public class LottoTicket {
     }
 
     public LottoTicket(String passivityNum) {
-        List<Integer> passivityList = lottoNumList.createPassivityList(passivityNum);
-        this.ticket = passivityList;
+        List<Integer> passivityNumbers = lottoNumList.createPassivityList(passivityNum);
+        this.ticket = passivityNumbers;
         changeNumListToStr();
     }
 
