@@ -57,8 +57,7 @@ public class ResultStatistics {
             }
             else if(ticket.contains(bonusBall)){
                 matchCountAndBonusBall.put(matchCount, true);
-                int currentMatchCount= statistics.get(matchCount);
-                statistics.put(matchCount, statistics.get(matchCount)+ 1);
+                statistics.put(BONUSBALL_KEY, statistics.get(BONUSBALL_KEY)+ 1);
             }
         }
     }

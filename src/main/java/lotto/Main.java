@@ -7,7 +7,7 @@ public class Main {
         LottoController lottoController = new LottoController();
         lottoController.settingPurchasePrice();
         lottoController.createPassivityTickets();
-        lottoController.outputTickets();
+        //lottoController.outputTickets();
         lottoController.settingSuccessNum();
         lottoController.settingBunusBall();
         lottoController.statisticsPreprocessing();

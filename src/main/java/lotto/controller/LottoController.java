@@ -14,7 +14,6 @@ public class LottoController {
     private WinningTicket winningTicket;
     private ResultStatistics resultStatistics;
 
-    private static int numOfPassivityTickets;
     private static int numOfRandomTickets;
 
     public LottoController() {
@@ -32,17 +31,12 @@ public class LottoController {
         calculateNumOfTickets.settingNumOfTickets(purchasePrice);
     }
 
-    // 티켓 생성
+    // 티켓 생성 및 출력
     public void createPassivityTickets() {
         int numOfTickets = calculateNumOfTickets.getNumOfTickets();
-        this.numOfPassivityTickets = inputView.requestNumOfPassivityTickets();
+        int numOfPassivityTickets = inputView.requestNumOfPassivityTickets();
         List<String> passivityNums = inputView.requestPassivityNum(numOfPassivityTickets);
         lottoTickets.createTickets(numOfTickets, passivityNums);
-    }
-
-    // 티켓들 출력
-    public void outputTickets() {
-        int numOfTickets = calculateNumOfTickets.getNumOfTickets();
         String lottoTicketsStr = lottoTickets.getTicketsStr();
         this.numOfRandomTickets = numOfTickets - numOfPassivityTickets;
         outputView.printTickets(lottoTicketsStr, numOfPassivityTickets, numOfRandomTickets);
