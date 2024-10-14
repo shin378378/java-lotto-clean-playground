@@ -9,6 +9,7 @@ public class ResultStatistics {
     private static int BONUSBALL_KEY = 7;
 
     private Map<Integer, Integer> statistics = new HashMap<>();
+    private Map<Integer, Boolean> matchCountAndBonusBall = new HashMap<>();
     private List<String> resultStatisticsList = new ArrayList<>();
     private int[] MATCH_PRICE = new int[8];
     private double profitRate;
@@ -24,15 +25,6 @@ public class ResultStatistics {
         return resultStatisticsList;
     }
 
-    //등수별 상금 정하기
-    public void decisionPrice() {
-        MATCH_PRICE[3] = 5000;
-        MATCH_PRICE[4] = 50000;
-        MATCH_PRICE[5] = 1500000;
-        MATCH_PRICE[BONUSBALL_KEY] = 30000000;
-        MATCH_PRICE[6] = 2000000000;
-    }
-
     //통계 초기화
     public void statisticsInit() {
         statistics.put(3, 0);
@@ -43,35 +35,41 @@ public class ResultStatistics {
     }
 
     //당첨티켓과 티켓 일치율 계산
-    public Integer ticketMatchRate(List<Integer> ticket, List<Integer> successList, int bonusBall) {
+    public void ticketMatchRate(List<LottoTicket> tickets, List<Integer> successList, int bonusBall) {
+        for (LottoTicket ticket : tickets) {
+            List<Integer> ticketNumbers = ticket.getLottoTicket();
+            ticketMatchCount(ticketNumbers,successList,bonusBall);
+        }
+    }
+
+    public void ticketMatchCount(List<Integer> ticket, List<Integer> successList, int bonusBall){
         int matchCount = 0;
+
         for (Integer num : ticket) {
             if (successList.contains(num)) {
                 matchCount++;
             }
         }
-        if (ticket.contains(bonusBall) && matchCount == 5) {
-            return BONUSBALL_KEY;
-        }
-        return matchCount;
-    }
 
-    //당첨 수 통계
-    public void settingStatistics(List<LottoTicket> tickets, List<Integer> successList, int bonusBall) {
-        for (LottoTicket ticket : tickets) {
-            List<Integer> lottoTicket = ticket.getLottoTicket();
-            int matchCount = ticketMatchRate(lottoTicket, successList, bonusBall);
-            statistics.put(matchCount, statistics.getOrDefault(matchCount, 0) + 1);
+        if (3<=matchCount && matchCount<=6) {
+            if(!ticket.contains(bonusBall)){
+                matchCountAndBonusBall.put(matchCount, false);
+                statistics.put(matchCount, statistics.get(matchCount)+ 1);
+            }
+            else if(ticket.contains(bonusBall)){
+                matchCountAndBonusBall.put(matchCount, true);
+                int currentMatchCount= statistics.get(matchCount);
+                statistics.put(matchCount, statistics.get(matchCount)+ 1);
+            }
         }
     }
 
     //수익률 계산
     public void calculateProfit(int purchasePrice) {
         int profit = 0;
-        for (Map.Entry<Integer, Integer> entry : statistics.entrySet()) {
-            Integer matchCount = entry.getKey();
-            Integer price = MATCH_PRICE[matchCount];
-            Integer count = entry.getValue();
+        for (Integer matchCount : matchCountAndBonusBall.keySet()) {
+            Integer price = TicketPrize.decisionPrice(matchCountAndBonusBall);
+            Integer count = statistics.get(matchCount);
             profit += price * count;
         }
         profitRate = (double) profit / purchasePrice;
@@ -113,3 +111,15 @@ public class ResultStatistics {
         resultStatisticsList.add(tmp);
     }
 }
+
+//당첨 수 통계
+//    public void settingStatistics(List<LottoTicket> tickets, List<Integer> successList, int bonusBall) {
+//        for (LottoTicket ticket : tickets) {
+//            List<Integer> lottoTicket = ticket.getLottoTicket();
+//            int matchCount = ticketMatchRate(lottoTicket, successList, bonusBall);
+//            statistics.put(matchCount, statistics.getOrDefault(matchCount, 0) + 1);
+//        }
+//    }
+
+
+

@@ -62,7 +62,7 @@ public class LottoController {
 
     // 통계 전처리 작업
     public void statisticsPreprocessing() {
-        resultStatistics.decisionPrice();
+        //resultStatistics.decisionPrice();
         resultStatistics.statisticsInit();
     }
 
@@ -71,7 +71,7 @@ public class LottoController {
         List<LottoTicket> tickets = lottoTickets.getTickets();
         List<Integer> successList = winningTicket.getSuccessList();
         int bonusBall = winningTicket.getBonusBall();
-        resultStatistics.settingStatistics(tickets, successList, bonusBall);
+        resultStatistics.ticketMatchRate(tickets, successList, bonusBall);
         int purchasePrice = calculateNumOfTickets.getPurchasePrice();
         resultStatistics.calculateProfit(purchasePrice);
         resultStatistics.settingResultProfit();

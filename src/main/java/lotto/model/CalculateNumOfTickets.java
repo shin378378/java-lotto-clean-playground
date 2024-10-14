@@ -24,7 +24,7 @@ public class CalculateNumOfTickets {
     }
 
     //예외 - 구매금액이 양수가 아닌 경우
-    public void validatePriceGreaterThanMinimumPurchasePrice(int purchasePrice){
+    private void validatePriceGreaterThanMinimumPurchasePrice(int purchasePrice){
         if (purchasePrice <= MINIMUM_PURCHASE_PRICE) {
             throw new IllegalArgumentException("구매 금액은 양수여야 합니다.");
         }
