@@ -50,24 +50,22 @@ public class ResultStatistics {
             }
         }
 
-        if (3<=matchCount && matchCount<=6) {
-            if(!ticket.contains(bonusBall)){
-                matchCountAndBonusBall.put(matchCount, false);
-                statistics.put(matchCount, statistics.get(matchCount)+ 1);
-            }
-            else if(ticket.contains(bonusBall)){
-                matchCountAndBonusBall.put(matchCount, true);
-                statistics.put(BONUSBALL_KEY, statistics.get(BONUSBALL_KEY)+ 1);
-            }
+        if(matchCount==5&&ticket.contains(bonusBall)){
+            matchCountAndBonusBall.put(matchCount, true);
+            statistics.put(BONUSBALL_KEY, statistics.get(BONUSBALL_KEY)+ 1);
+        }
+        else if(3<=matchCount && matchCount<=6){
+            matchCountAndBonusBall.put(matchCount, false);
+            statistics.put(matchCount, statistics.get(matchCount)+ 1);
         }
     }
 
     //수익률 계산
     public void calculateProfit(int purchasePrice) {
         int profit = 0;
-        for (Integer matchCount : matchCountAndBonusBall.keySet()) {
-            Integer price = TicketPrize.decisionPrice(matchCountAndBonusBall);
-            Integer count = statistics.get(matchCount);
+        for (Integer matchNum : statistics.keySet()) {
+            Integer price = TicketPrize.decisionPrice(matchNum);
+            Integer count = statistics.get(matchNum);
             profit += price * count;
         }
         profitRate = (double) profit / purchasePrice;

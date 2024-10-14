@@ -1,7 +1,5 @@
 package lotto.model;
 
-import java.util.Map;
-
 public enum TicketPrize {
     THREE_MATCH(3, 5000),
     FOUR_MATCH(4, 50000),
@@ -30,17 +28,4 @@ public enum TicketPrize {
         return 0;
     }
 
-    public static int decisionPrice(Map<Integer, Boolean> matchCountAndBonusBall) {
-        for (Integer matchCount : matchCountAndBonusBall.keySet()) {
-            if (matchCount == 5 && matchCountAndBonusBall.get(matchCount)) {
-                return FIVE_MATCH_WITH_BONUS.getPrize(matchCount);
-            }
-            for (TicketPrize ticketPrize : TicketPrize.values()) {
-                if (matchCount== ticketPrize.matchNum) {
-                    return ticketPrize.getPrize(matchCount);
-                }
-            }
-        }
-        return 0;
-    }
 }
