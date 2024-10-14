@@ -14,9 +14,8 @@ public class LottoController {
     private WinningTicket winningTicket;
     private ResultStatistics resultStatistics;
 
-    private int numOfTickets;
-    private int numOfPassivityTickets;
-    private int numOfRandomTickets;
+    private static int numOfPassivityTickets;
+    private static int numOfRandomTickets;
 
     public LottoController() {
         this.inputView = new InputView();
@@ -31,11 +30,11 @@ public class LottoController {
     public void settingPurchasePrice() {
         int purchasePrice = inputView.requestPurchasePrice();
         calculateNumOfTickets.settingNumOfTickets(purchasePrice);
-        numOfTickets = calculateNumOfTickets.getNumOfTickets();
     }
 
     // 티켓 생성
     public void createPassivityTickets() {
+        int numOfTickets = calculateNumOfTickets.getNumOfTickets();
         this.numOfPassivityTickets = inputView.requestNumOfPassivityTickets();
         List<String> passivityNums = inputView.requestPassivityNum(numOfPassivityTickets);
         lottoTickets.createTickets(numOfTickets, passivityNums);
@@ -43,6 +42,7 @@ public class LottoController {
 
     // 티켓들 출력
     public void outputTickets() {
+        int numOfTickets = calculateNumOfTickets.getNumOfTickets();
         String lottoTicketsStr = lottoTickets.getTicketsStr();
         this.numOfRandomTickets = numOfTickets - numOfPassivityTickets;
         outputView.printTickets(lottoTicketsStr, numOfPassivityTickets, numOfRandomTickets);
@@ -62,7 +62,6 @@ public class LottoController {
 
     // 통계 전처리 작업
     public void statisticsPreprocessing() {
-        //resultStatistics.decisionPrice();
         resultStatistics.statisticsInit();
     }
 

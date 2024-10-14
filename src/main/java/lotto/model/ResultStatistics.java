@@ -11,7 +11,6 @@ public class ResultStatistics {
     private Map<Integer, Integer> statistics = new HashMap<>();
     private Map<Integer, Boolean> matchCountAndBonusBall = new HashMap<>();
     private List<String> resultStatisticsList = new ArrayList<>();
-    private int[] MATCH_PRICE = new int[8];
     private double profitRate;
 
     public ResultStatistics() {
@@ -76,16 +75,16 @@ public class ResultStatistics {
     }
 
     //당첨 통계 결과 스트링으로 만들기
-    public void settingResultStr(int matchCount, int price, int count) {
+    public void settingResultStr(int matchNum, int price, int count) {
         String result=null;
-        if (matchCount == 3 || matchCount == 4 || matchCount == 5) {
-            result = matchCount + "개 일치 (" + price + "원) - " + count + "개";
+        if (matchNum == 3 || matchNum == 4 || matchNum == 5) {
+            result = matchNum + "개 일치 (" + price + "원) - " + count + "개";
             resultStatisticsList.add(result);
-        } else if (matchCount == BONUSBALL_KEY) {
+        } else if (matchNum == BONUSBALL_KEY) {
             result = "5개 일치, 보너스 볼 일치(" + price + "원) - " + count + "개";
             resultStatisticsList.add(result);
-        } else if (matchCount == 6) {
-            result = matchCount + "개 일치 (" + price + "원) - " + count + "개";
+        } else if (matchNum == 6) {
+            result = matchNum + "개 일치 (" + price + "원) - " + count + "개";
             resultStatisticsList.add(result);
         }
     }
@@ -101,25 +100,15 @@ public class ResultStatistics {
     //당첨 통계 결과 리스트만들기
     public void settingResultStatistics() {
         for (Map.Entry<Integer, Integer> entry : statistics.entrySet()) {
-            int matchCount = entry.getKey();
-            int price = MATCH_PRICE[matchCount];
+            int matchNum = entry.getKey();
+            int price = TicketPrize.decisionPrice(matchNum);
             int count = entry.getValue();
-            settingResultStr(matchCount, price, count);
+            settingResultStr(matchNum, price, count);
         }
         String tmp = resultStatisticsList.get(3);
         resultStatisticsList.remove(3);
         resultStatisticsList.add(tmp);
     }
 }
-
-//당첨 수 통계
-//    public void settingStatistics(List<LottoTicket> tickets, List<Integer> successList, int bonusBall) {
-//        for (LottoTicket ticket : tickets) {
-//            List<Integer> lottoTicket = ticket.getLottoTicket();
-//            int matchCount = ticketMatchRate(lottoTicket, successList, bonusBall);
-//            statistics.put(matchCount, statistics.getOrDefault(matchCount, 0) + 1);
-//        }
-//    }
-
 
 
