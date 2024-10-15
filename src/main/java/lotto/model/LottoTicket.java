@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 public class LottoTicket {
     private List<Integer> ticket;
     private String ticketStr;
-    private LottoNums lottoNumList = new LottoNums();
+    private LottoNums lottoNumList= new LottoNums();
 
     public LottoTicket() {
         this.ticket = lottoNumList.createRandomList();

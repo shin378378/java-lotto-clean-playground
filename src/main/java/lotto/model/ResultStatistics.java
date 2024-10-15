@@ -1,14 +1,11 @@
 package lotto.model;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class ResultStatistics {
     private static int BONUSBALL_KEY = 7;
 
-    private Map<Integer, Integer> statistics = new HashMap<>();
+    private Map<Integer, Integer> statistics = new LinkedHashMap<>();
     private Map<Integer, Boolean> matchCountAndBonusBall = new HashMap<>();
     private List<String> resultStatisticsList = new ArrayList<>();
     private double profitRate;
@@ -28,8 +25,8 @@ public class ResultStatistics {
         statistics.put(3, 0);
         statistics.put(4, 0);
         statistics.put(5, 0);
-        statistics.put(6, 0);
         statistics.put(BONUSBALL_KEY, 0);
+        statistics.put(6, 0);
     }
 
     public void ticketMatchCount(List<Integer> ticket, List<Integer> successList, int bonusBall){
@@ -96,9 +93,6 @@ public class ResultStatistics {
             int count = entry.getValue();
             settingResultStr(matchNum, price, count);
         }
-        String tmp = resultStatisticsList.get(3);
-        resultStatisticsList.remove(3);
-        resultStatisticsList.add(tmp);
     }
 }
 

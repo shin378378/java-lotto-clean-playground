@@ -6,25 +6,18 @@ import java.util.stream.Collectors;
 
 public class LottoTickets {
     private List<LottoTicket> tickets = new ArrayList<>();
-    private String ticketsStr = new String();
 
     public LottoTickets() {
     }
 
-    public String getTicketsStr() {
+    public String changeTicketsListToStr() {
+        String ticketsStr = tickets.stream()
+                .map(LottoTicket::getTicketStr)
+                .collect(Collectors.joining("\n"));
         return ticketsStr;
     }
 
-
-
-    public void changeTicketsListToStr() {
-        ticketsStr = tickets.stream()
-                .map(LottoTicket::getTicketStr)
-                .collect(Collectors.joining("\n"));
-    }
-
-
-    public void createTickets(int NumOfTickets, List<String> passivityNums) {
+    public String createTickets(int NumOfTickets, List<String> passivityNums) {
         for (int i = 0; i < passivityNums.size(); i++) {
             LottoTicket lottoTicket = new LottoTicket(passivityNums.get(i));
             tickets.add(lottoTicket);
@@ -33,7 +26,7 @@ public class LottoTickets {
             LottoTicket lottoTicket = new LottoTicket();
             tickets.add(lottoTicket);
         }
-        changeTicketsListToStr();
+        return changeTicketsListToStr();
     }
 
     public List<LottoTicket> getTickets() {

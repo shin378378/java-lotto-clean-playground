@@ -32,8 +32,7 @@ public class LottoController {
         int numOfTickets = calculateNumOfTickets.getNumOfTickets();
         int numOfPassivityTickets = inputView.requestNumOfPassivityTickets();
         List<String> passivityNums = inputView.requestPassivityNum(numOfPassivityTickets);
-        lottoTickets.createTickets(numOfTickets, passivityNums);
-        String lottoTicketsStr = lottoTickets.getTicketsStr();
+        String lottoTicketsStr = lottoTickets.createTickets(numOfTickets, passivityNums);
         int numOfRandomTickets = numOfTickets - numOfPassivityTickets;
         outputView.printTickets(lottoTicketsStr, numOfPassivityTickets, numOfRandomTickets);
     }
