@@ -47,11 +47,8 @@ public class LottoController {
         winningTicket.decisionBonusBall(bonusBall);
     }
 
-    public void statisticsPreprocessing() {
-        resultStatistics.statisticsInit();
-    }
-
     public void processStatistics() {
+        resultStatistics.statisticsInit();
         List<LottoTicket> tickets = lottoTickets.getTickets();
         List<Integer> successList = winningTicket.getSuccessList();
         int bonusBall = winningTicket.getBonusBall();

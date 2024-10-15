@@ -65,20 +65,6 @@ public class ResultStatistics {
         profitRate = (double) profit / purchasePrice;
     }
 
-    public void settingResultStr(int matchNum, int price, int count) {
-        String result=null;
-        if (matchNum == 3 || matchNum == 4 || matchNum == 5) {
-            result = matchNum + "개 일치 (" + price + "원) - " + count + "개";
-            resultStatisticsList.add(result);
-        } else if (matchNum == BONUSBALL_KEY) {
-            result = "5개 일치, 보너스 볼 일치(" + price + "원) - " + count + "개";
-            resultStatisticsList.add(result);
-        } else if (matchNum == 6) {
-            result = matchNum + "개 일치 (" + price + "원) - " + count + "개";
-            resultStatisticsList.add(result);
-        }
-    }
-
     public String settingResultProfit() {
         String resultProfit = "총 수익률은 " + profitRate + "입니다.";
         if (profitRate > 1) resultProfit = resultProfit.concat("(기준이 1이기 때문에 결과적으로 이익이라는 의미임)");
@@ -92,6 +78,20 @@ public class ResultStatistics {
             int price = TicketPrize.decisionPrice(matchNum);
             int count = entry.getValue();
             settingResultStr(matchNum, price, count);
+        }
+    }
+
+    public void settingResultStr(int matchNum, int price, int count) {
+        String result=null;
+        if (matchNum == 3 || matchNum == 4 || matchNum == 5) {
+            result = matchNum + "개 일치 (" + price + "원) - " + count + "개";
+            resultStatisticsList.add(result);
+        } else if (matchNum == BONUSBALL_KEY) {
+            result = "5개 일치, 보너스 볼 일치(" + price + "원) - " + count + "개";
+            resultStatisticsList.add(result);
+        } else if (matchNum == 6) {
+            result = matchNum + "개 일치 (" + price + "원) - " + count + "개";
+            resultStatisticsList.add(result);
         }
     }
 }

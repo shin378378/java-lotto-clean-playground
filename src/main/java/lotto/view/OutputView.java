@@ -20,6 +20,7 @@ public class OutputView {
         }
     }
 
+
     public void printProfit(String resultProfit){
         System.out.println(resultProfit);
     }
