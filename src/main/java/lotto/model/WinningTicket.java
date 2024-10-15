@@ -13,12 +13,10 @@ public class WinningTicket {
         this.successList = successList;
     }
 
-    //보너스볼 숫자 정하기
     public void decisionBonusBall(Integer bonusBall){
         this.bonusBall=bonusBall;
     }
 
-    //당첨번호 배열로 변환
     public void changeNumStrToArr(String successNumStr){
         String[] successNumArr = successNumStr.split(",");
         for(String num : successNumArr){

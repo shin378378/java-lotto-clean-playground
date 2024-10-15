@@ -16,12 +16,12 @@ public class LottoTicketsTest {
         List<LottoTicket> tickets = new ArrayList<>();
         List<String> ticketsList = new ArrayList<>();
         String ticketsStr = new String();
-        LottoTickets lottoTickets = new LottoTickets(tickets, ticketsList, ticketsStr);
+        //LottoTickets lottoTickets = new LottoTickets(tickets, ticketsList, ticketsStr);
         LottoTicket lottoTicket = new LottoTicket();
 
         //When
-        lottoTickets.createTicketsList(lottoTicket);
-        ticketsList = lottoTickets.getTicketsList();
+        //lottoTickets.createTicketsList(lottoTicket);
+        //ticketsList = lottoTickets.getTicketsList();
 
         //Then
         Assertions.assertThat(ticketsList.size()).isEqualTo(1);

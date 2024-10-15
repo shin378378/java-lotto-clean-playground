@@ -24,21 +24,12 @@ public class ResultStatistics {
         return resultStatisticsList;
     }
 
-    //통계 초기화
     public void statisticsInit() {
         statistics.put(3, 0);
         statistics.put(4, 0);
         statistics.put(5, 0);
         statistics.put(6, 0);
         statistics.put(BONUSBALL_KEY, 0);
-    }
-
-    //당첨티켓과 티켓 일치율 계산
-    public void ticketMatchRate(List<LottoTicket> tickets, List<Integer> successList, int bonusBall) {
-        for (LottoTicket ticket : tickets) {
-            List<Integer> ticketNumbers = ticket.getLottoTicket();
-            ticketMatchCount(ticketNumbers,successList,bonusBall);
-        }
     }
 
     public void ticketMatchCount(List<Integer> ticket, List<Integer> successList, int bonusBall){
@@ -60,7 +51,13 @@ public class ResultStatistics {
         }
     }
 
-    //수익률 계산
+    public void ticketMatchRate(List<LottoTicket> tickets, List<Integer> successList, int bonusBall) {
+        for (LottoTicket ticket : tickets) {
+            List<Integer> ticketNumbers = ticket.getLottoTicket();
+            ticketMatchCount(ticketNumbers,successList,bonusBall);
+        }
+    }
+
     public void calculateProfit(int purchasePrice) {
         int profit = 0;
         for (Integer matchNum : statistics.keySet()) {
@@ -71,7 +68,6 @@ public class ResultStatistics {
         profitRate = (double) profit / purchasePrice;
     }
 
-    //당첨 통계 결과 스트링으로 만들기
     public void settingResultStr(int matchNum, int price, int count) {
         String result=null;
         if (matchNum == 3 || matchNum == 4 || matchNum == 5) {
@@ -86,7 +82,6 @@ public class ResultStatistics {
         }
     }
 
-    //수익률 결과 스트링으로 만들기
     public String settingResultProfit() {
         String resultProfit = "총 수익률은 " + profitRate + "입니다.";
         if (profitRate > 1) resultProfit = resultProfit.concat("(기준이 1이기 때문에 결과적으로 이익이라는 의미임)");
@@ -94,7 +89,6 @@ public class ResultStatistics {
         return resultProfit;
     }
 
-    //당첨 통계 결과 리스트만들기
     public void settingResultStatistics() {
         for (Map.Entry<Integer, Integer> entry : statistics.entrySet()) {
             int matchNum = entry.getKey();

@@ -23,13 +23,11 @@ public class LottoController {
         this.resultStatistics = new ResultStatistics();
     }
 
-    // 구매금액 정하기
     public void settingPurchasePrice() {
         int purchasePrice = inputView.requestPurchasePrice();
         calculateNumOfTickets.settingNumOfTickets(purchasePrice);
     }
 
-    // 티켓 생성 및 출력
     public void createPassivityTickets() {
         int numOfTickets = calculateNumOfTickets.getNumOfTickets();
         int numOfPassivityTickets = inputView.requestNumOfPassivityTickets();
@@ -40,24 +38,20 @@ public class LottoController {
         outputView.printTickets(lottoTicketsStr, numOfPassivityTickets, numOfRandomTickets);
     }
 
-    // 당첨번호 생성
     public void settingSuccessNum() {
         String successNumStr = inputView.requestSuccessNum();
         winningTicket.changeNumStrToArr(successNumStr);
     }
 
-    // 보너스볼 생성
     public void settingBunusBall() {
         int bonusBall = inputView.requestBonusBall();
         winningTicket.decisionBonusBall(bonusBall);
     }
 
-    // 통계 전처리 작업
     public void statisticsPreprocessing() {
         resultStatistics.statisticsInit();
     }
 
-    // 당첨 통계
     public void processStatistics() {
         List<LottoTicket> tickets = lottoTickets.getTickets();
         List<Integer> successList = winningTicket.getSuccessList();
@@ -69,7 +63,6 @@ public class LottoController {
         resultStatistics.settingResultStatistics();
     }
 
-    // 당첨 통계 출력
     public void printSettingStatistics() {
         outputView.printStatistics();
         List<String> resultStatisticsList = resultStatistics.getResultStatisticsList();
