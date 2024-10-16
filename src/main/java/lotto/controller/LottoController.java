@@ -24,12 +24,9 @@ public class LottoController {
         this.resultStatistics = new ResultStatistics();
     }
 
-    public void settingPurchasePrice() {
+    public void settingPurchaseTicket() {
         int purchasePrice = inputView.requestPurchasePrice();
         calculateNumOfTickets.settingNumOfTickets(purchasePrice);
-    }
-
-    public void createPassivityTickets() {
         int numOfTickets = calculateNumOfTickets.getNumOfTickets();
         int numOfPassivityTickets = inputView.requestNumOfPassivityTickets();
         List<String> passivityNums = inputView.requestPassivityNum(numOfPassivityTickets);
@@ -38,12 +35,9 @@ public class LottoController {
         outputView.printTickets(lottoTicketsStr, numOfPassivityTickets, numOfRandomTickets);
     }
 
-    public void settingSuccessNum() {
+    public void settingSuccessNumWithBonusBall() {
         String successNumStr = inputView.requestSuccessNum();
         winningTicket.changeNumStrToArr(successNumStr);
-    }
-
-    public void settingBunusBall() {
         int bonusBall = inputView.requestBonusBall();
         winningTicket.decisionBonusBall(bonusBall);
     }
@@ -63,7 +57,7 @@ public class LottoController {
         int BONUSBALL_KEY=resultStatistics.getBonusballKey();
         Map<Integer,Integer> statistics= resultStatistics.getStatistics();
         outputView.printResultStatistics(statistics,BONUSBALL_KEY);
-        String resultProfit = resultStatistics.settingResultProfit();
-        outputView.printProfit(resultProfit);
+        double profitRate= resultStatistics.getProfitRate();
+        outputView.printProfit(profitRate);
     }
 }

@@ -4,16 +4,11 @@ import java.util.*;
 
 public class ResultStatistics {
     private static int BONUSBALL_KEY = 7;
-
     private Map<Integer, Integer> statistics = new LinkedHashMap<>();
     private Map<Integer, Boolean> matchCountAndBonusBall = new HashMap<>();
     private double profitRate;
 
     public ResultStatistics() {
-    }
-
-    public ResultStatistics(int BONUSBALL_KEY) {
-        this.BONUSBALL_KEY=BONUSBALL_KEY;
     }
 
     public void statisticsInit() {
@@ -60,19 +55,16 @@ public class ResultStatistics {
         profitRate = (double) profit / purchasePrice;
     }
 
-    public String settingResultProfit() {
-        String resultProfit = "총 수익률은 " + profitRate + "입니다.";
-        if (profitRate > 1) resultProfit = resultProfit.concat("(기준이 1이기 때문에 결과적으로 이익이라는 의미임)");
-        else if (profitRate < 1) resultProfit = resultProfit.concat("(기준이 1이기 때문에 결과적으로 손해라는 의미임)");
-        return resultProfit;
-    }
-
     public int getBonusballKey() {
         return BONUSBALL_KEY;
     }
 
     public Map<Integer, Integer> getStatistics() {
         return statistics;
+    }
+
+    public double getProfitRate() {
+        return profitRate;
     }
 }
 
