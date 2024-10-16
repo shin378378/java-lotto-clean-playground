@@ -1,6 +1,10 @@
 package lotto.view;
 
+import lotto.model.TicketPrize;
+
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class OutputView {
     public void printTickets(String lottoTicketsStr,int NumOfPassivityTickets, int NumOfRandomTickets){
@@ -14,10 +18,26 @@ public class OutputView {
         System.out.println("---------");
     }
 
-    public void printMatchCount(List<String> resultStatistics){
-        for (String resultStatistic : resultStatistics) {
-            System.out.println(resultStatistic);
+    public void printResultStatistics(Map<Integer, Integer> statistics,int BONUSBALL_KEY) {
+        for (Map.Entry<Integer, Integer> entry : statistics.entrySet()) {
+            int matchNum = entry.getKey();
+            int price = TicketPrize.decisionPrice(matchNum);
+            int count = entry.getValue();
+            String result = settingResultStr(matchNum, price, count,BONUSBALL_KEY);
+            System.out.println(result);
         }
+    }
+
+    public String settingResultStr(int matchNum, int price, int count,int BONUSBALL_KEY) {
+        String result=null;
+        if (matchNum == 3 || matchNum == 4 || matchNum == 5) {
+            result = matchNum + "개 일치 (" + price + "원) - " + count + "개";
+        } else if (matchNum == BONUSBALL_KEY) {
+            result = "5개 일치, 보너스 볼 일치(" + price + "원) - " + count + "개";
+        } else if (matchNum == 6) {
+            result = matchNum + "개 일치 (" + price + "원) - " + count + "개";
+        }
+        return result;
     }
 
 

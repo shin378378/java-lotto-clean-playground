@@ -7,7 +7,6 @@ public class ResultStatistics {
 
     private Map<Integer, Integer> statistics = new LinkedHashMap<>();
     private Map<Integer, Boolean> matchCountAndBonusBall = new HashMap<>();
-    private List<String> resultStatisticsList = new ArrayList<>();
     private double profitRate;
 
     public ResultStatistics() {
@@ -15,10 +14,6 @@ public class ResultStatistics {
 
     public ResultStatistics(int BONUSBALL_KEY) {
         this.BONUSBALL_KEY=BONUSBALL_KEY;
-    }
-
-    public List<String> getResultStatisticsList() {
-        return resultStatisticsList;
     }
 
     public void statisticsInit() {
@@ -72,27 +67,12 @@ public class ResultStatistics {
         return resultProfit;
     }
 
-    public void settingResultStatistics() {
-        for (Map.Entry<Integer, Integer> entry : statistics.entrySet()) {
-            int matchNum = entry.getKey();
-            int price = TicketPrize.decisionPrice(matchNum);
-            int count = entry.getValue();
-            settingResultStr(matchNum, price, count);
-        }
+    public int getBonusballKey() {
+        return BONUSBALL_KEY;
     }
 
-    public void settingResultStr(int matchNum, int price, int count) {
-        String result=null;
-        if (matchNum == 3 || matchNum == 4 || matchNum == 5) {
-            result = matchNum + "개 일치 (" + price + "원) - " + count + "개";
-            resultStatisticsList.add(result);
-        } else if (matchNum == BONUSBALL_KEY) {
-            result = "5개 일치, 보너스 볼 일치(" + price + "원) - " + count + "개";
-            resultStatisticsList.add(result);
-        } else if (matchNum == 6) {
-            result = matchNum + "개 일치 (" + price + "원) - " + count + "개";
-            resultStatisticsList.add(result);
-        }
+    public Map<Integer, Integer> getStatistics() {
+        return statistics;
     }
 }
 

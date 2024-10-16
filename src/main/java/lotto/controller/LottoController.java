@@ -5,6 +5,7 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.List;
+import java.util.Map;
 
 public class LottoController {
     private InputView inputView;
@@ -55,14 +56,13 @@ public class LottoController {
         resultStatistics.ticketMatchRate(tickets, successList, bonusBall);
         int purchasePrice = calculateNumOfTickets.getPurchasePrice();
         resultStatistics.calculateProfit(purchasePrice);
-        resultStatistics.settingResultProfit();
-        resultStatistics.settingResultStatistics();
     }
 
     public void printSettingStatistics() {
         outputView.printStatistics();
-        List<String> resultStatisticsList = resultStatistics.getResultStatisticsList();
-        outputView.printMatchCount(resultStatisticsList);
+        int BONUSBALL_KEY=resultStatistics.getBonusballKey();
+        Map<Integer,Integer> statistics= resultStatistics.getStatistics();
+        outputView.printResultStatistics(statistics,BONUSBALL_KEY);
         String resultProfit = resultStatistics.settingResultProfit();
         outputView.printProfit(resultProfit);
     }
