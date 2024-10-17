@@ -1,13 +1,13 @@
 package model;
 
+import lotto.model.LottoNums;
 import lotto.model.LottoTicket;
+import lotto.model.LottoTickets;
 import lotto.model.ResultStatistics;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class ResultStatisticsTest {
     @Test
@@ -15,18 +15,23 @@ public class ResultStatisticsTest {
         //Given
         SoftAssertions softly = new SoftAssertions();
         ResultStatistics resultStatistics = new ResultStatistics();
+        resultStatistics.statisticsInit();
+        Map<Integer, Integer> statistics = resultStatistics.getStatistics();
+
         List<Integer> ticket1 = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6));
-        List<Integer> ticket2 = new ArrayList<>(Arrays.asList(2, 4, 1, 3, 5, 9));
-        List<Integer> successList = new ArrayList<>(Arrays.asList(2, 3, 1, 4, 5, 7));
-        int bonusBall=9;
+        List<Integer> ticket2 = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 7));
+        List<Integer> successTicket = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6));
+        int bonusBall=7;
 
         //When
-        //int matchCount1 = resultStatistics.ticketMatchRate(ticket1,successList,7);
-        //int matchCount2 = resultStatistics.ticketMatchRate(ticket2,successList,7);
+        resultStatistics.ticketMatchCount(ticket1,successTicket,bonusBall);
+        resultStatistics.ticketMatchCount(ticket2,successTicket,bonusBall);
+        int matchCount1= statistics.get(6);
+        int matchCount2= statistics.get(7);
+        softly.assertThat(matchCount1).isEqualTo(1);
+        softly.assertThat(matchCount2).isEqualTo(1);
 
         //Then
-        //softly.assertThat(matchCount1).isEqualTo(5);
-        //softly.assertThat(matchCount2).isEqualTo(7);
         softly.assertAll();
     }
 }

@@ -21,14 +21,12 @@ public class ResultStatistics {
 
     public void ticketMatchCount(List<Integer> ticket, List<Integer> successList, int bonusBall){
         int matchCount = 0;
-
         for (Integer num : ticket) {
             if (successList.contains(num)) {
                 matchCount++;
             }
         }
-
-        if(matchCount==5&&ticket.contains(bonusBall)){
+        if(matchCount==5&&ticket.contains(bonusBall)&&!successList.contains(bonusBall)){
             matchCountAndBonusBall.put(matchCount, true);
             statistics.put(BONUSBALL_KEY, statistics.get(BONUSBALL_KEY)+ 1);
         }
