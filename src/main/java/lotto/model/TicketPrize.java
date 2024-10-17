@@ -4,8 +4,10 @@ public enum TicketPrize {
     THREE_MATCH(3, 5000),
     FOUR_MATCH(4, 50000),
     FIVE_MATCH(5, 1500000),
-    FIVE_MATCH_WITH_BONUS(7, 30000000),
+    FIVE_MATCH_WITH_BONUS(TicketPrize.BONUSBALL_KEY, 30000000),
     SIX_MATCH(6, 2000000000);
+
+    private final static int BONUSBALL_KEY = 7;
 
     private final int matchNum;
     private final int prize;
