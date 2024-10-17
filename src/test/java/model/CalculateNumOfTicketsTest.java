@@ -10,13 +10,13 @@ public class CalculateNumOfTicketsTest {
     @ValueSource(ints={10000,20000,14000})
     void 티켓_개수를_잘_정하는_지_확인(int purchasePrice){
         //Given
-        CalculateNumOfTickets calculateNumOfTickets = new CalculateNumOfTickets(0,0);
+        CalculateNumOfTickets calculateNumOfTickets = new CalculateNumOfTickets();
 
         //When
         calculateNumOfTickets.settingNumOfTickets(purchasePrice);
         int numOfTickets =calculateNumOfTickets.getNumOfTickets();
 
-        //Then
+//        //Then
         if(purchasePrice==10000) Assertions.assertThat(numOfTickets).isEqualTo(10);
         else if(purchasePrice==20000) Assertions.assertThat(numOfTickets).isEqualTo(20);
         else if(purchasePrice==14000) Assertions.assertThat(numOfTickets).isEqualTo(14);

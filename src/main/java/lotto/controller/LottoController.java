@@ -18,7 +18,7 @@ public class LottoController {
     public LottoController() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
-        this.calculateNumOfTickets = CalculateNumOfTickets.createCalculateNumOfTickets();
+        this.calculateNumOfTickets = new CalculateNumOfTickets();
         this.lottoTickets = new LottoTickets();
         this.winningTicket = new WinningTicket();
         this.resultStatistics = new ResultStatistics();

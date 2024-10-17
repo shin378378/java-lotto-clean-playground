@@ -4,17 +4,8 @@ public class CalculateNumOfTickets {
     private static final int TICKET_PRICE = 1000;
     private static final int MINIMUM_PURCHASE_PRICE=0;
 
-    private int numOfTickets;
-    private int purchasePrice;
-
-    public CalculateNumOfTickets(int numOfTickets, int purchasePrice) {
-        this.numOfTickets = numOfTickets;
-        this.purchasePrice = purchasePrice;
-    }
-
-    public static CalculateNumOfTickets createCalculateNumOfTickets() {
-        return new CalculateNumOfTickets(0,0);
-    }
+    private int numOfTickets=0;
+    private int purchasePrice=0;
 
     public void settingNumOfTickets(int purchasePrice) {
         validatePriceGreaterThanMinimumPurchasePrice(purchasePrice);
